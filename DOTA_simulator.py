@@ -73,7 +73,7 @@ class DotaSim():
             self.model = DotaUNet(self.state_length, self.action_length).double()
         elif type == "ffnet":
             self.model = FFNet(self.state_length, self.action_length,
-                             n_hidden=256, n_hidden_layer=1)
+                             n_hidden=256, n_hidden_layer=1).double()
         else:
             raise Exception('No such net')
         print("Model dimensions: (%d, %d) => %d" %(self.state_length, self.action_length, self.state_length))
@@ -227,6 +227,7 @@ class DotaSim():
             plt.plot(epoch_losses[t], label=t + ' loss')
             plt.xlabel("Epochs")
             plt.ylabel("Loss")
+        plt.xlim(0)
         plt.legend()
         plt.show()
         return self

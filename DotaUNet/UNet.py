@@ -6,6 +6,7 @@ import matplotlib.pyplot  as plt
 class FFNet(nn.Module):
     def __init__(self, state_length, action_length, n_hidden=256, n_hidden_layer=1):
         super(FFNet, self).__init__()
+        self.use_cuda = torch.cuda.is_available()
 
         self.input_layer = Input(state_length, action_length, n_hidden)
 
@@ -17,12 +18,20 @@ class FFNet(nn.Module):
 
         self.output_layer = Output(n_hidden, state_length)
 
+        if self.use_cuda:
+            print("Using CUDA")
+            self.cuda()
+
     def forward(self, state, action):
+        if self.use_cuda:
+            state = state.cuda()
+            action = action.cuda()
+
         x = self.input_layer(state, action)
         for h in self.hidden:
             x = F.relu(h(x))  # activation function for hidden layers
         x = self.output_layer(x)  # linear output
-        return x
+        return x.cpu()
 
 class DotaUNet(nn.Module):
     def __init__(self, state_length=208, action_length=29):
@@ -45,7 +54,6 @@ class DotaUNet(nn.Module):
         if self.use_cuda:
             print("Using CUDA")
             self.cuda()
-        # print(self)
 
     def forward(self, state, action):
         if self.use_cuda:
