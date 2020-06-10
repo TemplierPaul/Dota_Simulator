@@ -1,5 +1,5 @@
-# Dota_Simulator
-Deep Learning-based model to simulate a DOTA 2 game.
+# Dota 2 Simulator
+Deep Learning-based simulator of DOTA 2 for ML training purposes.
 
 ## Training the model
 Create a simulator:
@@ -57,3 +57,6 @@ sim.dota_state  # With all features
 sim.state       # With only the non-constant features
 ```
 
+## Constant features management
+Constant features are removed to allow for a smaller model and to reduce training time.
+All constant features observed in random play are listed in `constant_features.py`, in the `constant_features` dictionary in the form: `{feature_id : constant_value # Feature name}`. Some of them may stay constant beacause of the random agent's very basic behavior, it is hence strongly suggested to comment some of the lines before training, based on your knowledge of the game and expectations.
