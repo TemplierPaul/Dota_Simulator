@@ -1,6 +1,11 @@
 # Dota 2 Simulator
 Deep Learning-based simulator of DOTA 2 for ML training purposes.
 
+Import the module:
+```
+from DOTA_simulator import *
+```
+
 ## Training the model
 Create a simulator:
 ```
