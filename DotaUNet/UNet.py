@@ -43,13 +43,14 @@ class DotaUNet(nn.Module):
         self.output_layer = Output(256, state_length)
 
         if self.use_cuda:
+            print("Using CUDA")
             self.cuda()
         # print(self)
 
     def forward(self, state, action):
         if self.use_cuda:
-            state.cuda()
-            action.cuda()
+            state = state.cuda()
+            action = action.cuda()
         x1 = self.input_layer(state, action)
         x2 = self.down1(x1)
         x3 = self.down2(x2)

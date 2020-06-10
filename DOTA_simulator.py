@@ -90,6 +90,9 @@ class DotaSim():
             self.scaler = None
 
         files = glob.glob(path)
+        print(len(files), 'Files to load')
+        if len(files)==0:
+            raise Exception("No files to load")
         df_state, df_action, df_next_state = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
         for f in files:
             # Get csv
