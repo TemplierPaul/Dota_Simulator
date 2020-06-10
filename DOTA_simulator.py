@@ -213,11 +213,22 @@ class DotaSim():
             print("> %d \t/ %d \tTrain Loss: %.4f  \t| Validation Loss: %.4f" %(epoch+1, epochs, loss, val_loss))
 
             if limit_overfit :
-                if len(val_losses)>1 and val_loss > max(val_losses[-6:-1]):
-                    print("Overfitting:\n", np.array(val_losses[-6:-1]))
+                if type(limit_overfit)==int:
+                    last_losses = epoch_losses['val'][(-1 * limit_overfit - 1):-1]
+                else:
+                    last_losses = epoch_losses['val'][-21:-1]
+                if len(last_losses)>=1 and val_loss > max(last_losses):
+                    print("Stopped because of stagnating loss. Previous loss values:\n", np.array(last_losses))
                     break
 
-        print("Training time: %.1f" %(time.time()-t0))
+        print("Training time: %.1fs" %(time.time()-t0))
+        plt.figure(figsize=(8, 8))
+        for t in epoch_losses.keys():
+            plt.plot(epoch_losses[t], label=t + ' loss')
+            plt.xlabel("Epochs")
+            plt.ylabel("Loss")
+        plt.legend()
+        plt.show()
         return self
 
     def transform(self, vect):
@@ -235,17 +246,13 @@ class DotaSim():
         return vect_transformed
 
     def inverse_transform(self, vect):
-        print(0, vect.shape)
         vect_transformed = torch.squeeze(vect.detach())
-        print(1, vect_transformed.shape)
 
         # Scale back
         vect_transformed = self.scaler.inverse_transform(vect_transformed)
-        print(2, vect_transformed.shape)
         # Add constants
         if self.remove_constant_features:
             vect_transformed = preprocessing.add_constants(vect_transformed)
-        print(3, vect_transformed.shape)
         return vect_transformed
 
     def render(self):
@@ -254,8 +261,8 @@ class DotaSim():
         print("%d > Time: %d | (%d , %d)" % (self.step_nb, t, x, y))
         return self.dota_state
 
-    def reset(self):
-        self.dota_state = np.array(pd.read_csv("Init_state.csv", index_col=0, names=['init'])['init'])
+    def reset(self, init_state="Init_state.csv"):
+        self.dota_state = np.array(pd.read_csv(init_state, index_col=0, names=['init'])['init'])
         self.state = self.transform(self.dota_state)
         self.step_nb = 0
         print("Env Reset")
