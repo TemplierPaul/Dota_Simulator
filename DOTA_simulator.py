@@ -63,7 +63,7 @@ class DotaSim():
         self.action_length = action_length
 
 
-    def set_model(self, type=None, name=None, model=None):
+    def set_model(self, type=None, name=None, model=None, depth=1):
         if name is not None:
             self.model = joblib.load(name+".dotanet")
             self.scaler = joblib.load(name+'.scaler')
@@ -71,9 +71,13 @@ class DotaSim():
             self.model = model
         elif type == "unet":
             self.model = DotaUNet(self.state_length, self.action_length).double()
+        elif type == "small-unet":
+            self.model = SmallUNet(self.state_length, self.action_length).double()
+        elif type == "deep-unet":
+            self.model = DeepUNet(self.state_length, self.action_length).double()
         elif type == "ffnet":
             self.model = FFNet(self.state_length, self.action_length,
-                             n_hidden=256, n_hidden_layer=1).double()
+                             n_hidden=512, n_hidden_layer=depth).double()
         else:
             raise Exception('No such net')
         print("Model dimensions: (%d, %d) => %d" %(self.state_length, self.action_length, self.state_length))
@@ -167,7 +171,7 @@ class DotaSim():
         validation_loader = torch.utils.data.DataLoader(self.data, batch_size=batch_size,
                                                         sampler=valid_sampler)
 
-        learning_rate = 1e-4
+        learning_rate = 0.01
         optimizer = torch.optim.Adam(self.model.parameters(), lr=learning_rate)
         loss_func = torch.nn.MSELoss()
 
@@ -227,7 +231,7 @@ class DotaSim():
             plt.plot(epoch_losses[t], label=t + ' loss')
             plt.xlabel("Epochs")
             plt.ylabel("Loss")
-        plt.xlim(0)
+        plt.ylim(0, max(max(epoch_losses['train']), max(epoch_losses['val'])))
         plt.legend()
         plt.show()
         return self
@@ -267,6 +271,7 @@ class DotaSim():
         self.state = self.transform(self.dota_state)
         self.step_nb = 0
         print("Env Reset")
+        return self.dota_state
 
     def step(self, action):
         if self.dota_state is None:
@@ -280,6 +285,21 @@ class DotaSim():
         self.step_nb += 1
 
         return self.dota_state
+
+    def run_steps(self, decision_function, n_steps=100, render=True):
+        assert self.model is not None
+        s = self.reset()
+        if render:
+            self.render()
+        actions = []
+        for i in range(n_steps):
+            a = decision_function(s)
+            actions.append(a)
+            s = self.step(a)
+            if render:
+                self.render()
+        return actions
+
 
 if __name__=="__main__":
     # sim = DotaSim()\

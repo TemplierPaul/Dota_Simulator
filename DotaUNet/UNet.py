@@ -70,3 +70,81 @@ class DotaUNet(nn.Module):
         x = self.concat2(x1, x)
         x = self.output_layer(x)
         return x.cpu()
+
+class SmallUNet(nn.Module):
+    def __init__(self, state_length=208, action_length=29):
+        super(SmallUNet, self).__init__()
+        self.use_cuda = torch.cuda.is_available()
+
+        self.input_layer = Input(state_length, action_length, 256)
+        self.down1 = Down(256, 128)
+
+        self.bottom = Down(128, 128)
+
+        self.up1 = Up(128, 256)
+        self.concat1 = ConcatConv()
+
+        self.output_layer = Output(256, state_length)
+
+        if self.use_cuda:
+            print("Using CUDA")
+            self.cuda()
+
+    def forward(self, state, action):
+        if self.use_cuda:
+            state = state.cuda()
+            action = action.cuda()
+        x1 = self.input_layer(state, action)
+        x2 = self.down1(x1)
+
+        x = self.bottom(x2)
+
+        x = self.up1(x)
+        x = self.concat1(x1, x)
+        x = self.output_layer(x)
+        return x.cpu()
+
+class DeepUNet(nn.Module):
+    def __init__(self, state_length=208, action_length=29):
+        super(DeepUNet, self).__init__()
+        self.use_cuda = torch.cuda.is_available()
+
+        self.input_layer = Input(state_length, action_length, 512)
+        self.down0 = Down(512, 256)
+        self.down1 = Down(256, 128)
+        self.down2 = Down(128, 64)
+
+        self.bottom = Down(64, 64)
+
+        self.up1 = Up(64, 128)
+        self.concat1 = ConcatConv()
+        self.up2 = Up(128, 256)
+        self.concat2 = ConcatConv()
+        self.up3 = Up(256, 512)
+        self.concat3 = ConcatConv()
+
+        self.output_layer = Output(512, state_length)
+
+        if self.use_cuda:
+            print("Using CUDA")
+            self.cuda()
+
+    def forward(self, state, action):
+        if self.use_cuda:
+            state = state.cuda()
+            action = action.cuda()
+        x0 = self.input_layer(state, action)
+        x1 = self.down0(x0)
+        x2 = self.down1(x1)
+        x3 = self.down2(x2)
+
+        x = self.bottom(x3)
+
+        x = self.up1(x)
+        x = self.concat1(x2, x)
+        x = self.up2(x)
+        x = self.concat2(x1, x)
+        x = self.up3(x)
+        x = self.concat3(x0, x)
+        x = self.output_layer(x)
+        return x.cpu()
