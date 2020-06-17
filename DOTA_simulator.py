@@ -63,7 +63,7 @@ class DotaSim():
         self.action_length = action_length
 
 
-    def set_model(self, type=None, name=None, model=None, depth=1):
+    def set_model(self, type=None, name=None, model=None, depth=1, height=256):
         if name is not None:
             self.model = joblib.load(name+".dotanet")
             self.scaler = joblib.load(name+'.scaler')
@@ -77,10 +77,10 @@ class DotaSim():
             self.model = DeepUNet(self.state_length, self.action_length).double()
         elif type == "ffnet":
             self.model = FFNet(self.state_length, self.action_length,
-                             n_hidden=512, n_hidden_layer=depth).double()
+                             n_hidden=height, n_hidden_layer=depth).double()
         else:
             raise Exception('No such net')
-        print("Model dimensions: (%d, %d) => %d" %(self.state_length, self.action_length, self.state_length))
+#         print("Model dimensions: (%d, %d) => %d" %(self.state_length, self.action_length, self.state_length))
         print("Model type:\n", self.model)
         return self
 
@@ -88,7 +88,11 @@ class DotaSim():
         joblib.dump(self.model, name+'.dotanet')
         joblib.dump(self.scaler, name+'.scaler')
 
-    def load_data(self, path="../games_data/rd_cumulated*", replace=True, remove_constant_features=True, verbose=True):
+    def load_data(self, path="../games_data/*", replace=True, remove_constant_features=True, verbose=True):
+        import json
+        with open('features_list.json', 'r') as fp:
+            features_list = json.load(fp)
+
         self.remove_constant_features = remove_constant_features
         if replace:
             self.scaler = None
@@ -99,28 +103,40 @@ class DotaSim():
             raise Exception("No files to load")
         df_state, df_action, df_next_state = pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
         for f in files:
-            # Get csv
             df = pd.read_csv(f, index_col=0)
 
             # remove constant features
             if self.remove_constant_features:
                 df = preprocessing.remove_constants(df)
 
-            # Create the inputs and outputs
             next_df = df.drop(columns=["action"])
-            next_df = next_df.drop(index=0, axis=0)
+            next_df = next_df.drop(index=0, axis=0)  # Drop first
             df_next_state = pd.concat([df_next_state, next_df], axis=0)
 
-
-            df = df.drop(index=len(df) - 1) # Drop last record (unknown output)
-
             actions = preprocessing.actions_to_vect(df['action'])
-            df_state=pd.concat([df_state, df.drop(columns="action")], axis=0)
+            actions = actions.drop(index=0, axis=0)  # Drop first
             df_action = pd.concat([df_action, actions], axis=0)
 
-
+            df = df.drop(index=len(df) - 1)  # Drop last record (unknown output)
+            df_state = pd.concat([df_state, df.drop(columns="action")], axis=0)
 
             if verbose: print('%s   \tImported: %d lines' % (f, len(df)), end='\n')
+
+        print(df_state.shape, df_action.shape, df_next_state.shape)
+
+        # Reset index
+        for d in [df_state, df_action, df_next_state]:
+            d.reset_index(inplace=True, drop=True)
+            print(d.shape)
+
+        # Filter
+        filter_new_games = df_state['56'] < df_next_state['56']
+        filter_loc_diff = df_next_state['26'] - df_state['26'] > -4000
+        filter_dead = df_state['2'] > 0
+
+        df_state = df_state[filter_new_games & filter_loc_diff & filter_dead]
+        df_next_state = df_next_state[filter_new_games & filter_loc_diff & filter_dead]
+        df_action = df_action[filter_new_games & filter_loc_diff & filter_dead]
 
         # Scale
         if self.scaler is None:
@@ -149,7 +165,7 @@ class DotaSim():
         print(self.data.shape[0], "Lines in the dataset")
         return self
 
-    def train(self, epochs=100, batch_size=32, limit_overfit=False, validation_split=0.2):
+    def train(self, epochs=100, batch_size=32, limit_overfit=False, validation_split=0.2, plot=True):
         shuffle_dataset = True
         random_seed = 42
 
@@ -172,7 +188,7 @@ class DotaSim():
                                                         sampler=valid_sampler)
 
         learning_rate = 0.01
-        optimizer = torch.optim.Adam(self.model.parameters(), lr=learning_rate)
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=learning_rate, amsgrad=True)
         loss_func = torch.nn.MSELoss()
 
         # Stopping criterion
@@ -226,14 +242,15 @@ class DotaSim():
                     break
 
         print("Training time: %.1fs" %(time.time()-t0))
-        plt.figure(figsize=(8, 8))
-        for t in epoch_losses.keys():
-            plt.plot(epoch_losses[t], label=t + ' loss')
-            plt.xlabel("Epochs")
-            plt.ylabel("Loss")
-        plt.ylim(0, max(max(epoch_losses['train']), max(epoch_losses['val'])))
-        plt.legend()
-        plt.show()
+        if plot:
+            plt.figure(figsize=(8, 8))
+            for t in epoch_losses.keys():
+                plt.plot(epoch_losses[t], label=t + ' loss')
+                plt.xlabel("Epochs")
+                plt.ylabel("Loss")
+            plt.ylim(0, max(max(epoch_losses['train']), max(epoch_losses['val'])))
+            plt.legend()
+            plt.show()
         return self
 
     def transform(self, vect):
@@ -270,7 +287,7 @@ class DotaSim():
         self.dota_state = np.array(pd.read_csv(init_state, index_col=0, names=['init'])['init'])
         self.state = self.transform(self.dota_state)
         self.step_nb = 0
-        print("Env Reset")
+#         print("Env Reset")
         return self.dota_state
 
     def step(self, action):

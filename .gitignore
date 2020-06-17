@@ -1,3 +1,10 @@
+.idea
+.tmp*
+raw_data*
+all_data*
+*.twb
+super_flat*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -8,8 +15,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-.idea
-.tmp*
 build/
 develop-eggs/
 dist/
