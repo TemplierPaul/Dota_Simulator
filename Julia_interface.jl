@@ -19,11 +19,11 @@ function train_sim(epochs=30, batch_size=256, limit_overfit=3, name::String ="ju
     sim
 end
 
-function import_sim()
+function import_sim(name="julia_cpu_test")
     # Create simulator
     sim = dotasimlib.DotaSim()
     println("----- IMPORTING SIMULATOR -----\n")
-    sim.set_model(name="julia_cpu_test")
+    sim.set_model(name=name)
     sim.model.use_cuda = false
     sim
 end
