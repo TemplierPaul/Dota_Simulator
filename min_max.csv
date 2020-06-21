@@ -1,0 +1,311 @@
+,min,max,Name
+0,2.0,2.0,team
+1,1.0,19.0,level
+2,0.0,2000.0,health
+3,600.0,2000.0,max health
+4,2.25,100.0,health regen
+5,1.0,1000.0,mana
+6,303.0,1000.0,max mana
+7,1.25,30.0,mana regen
+8,305.0,305.0,base move speed
+9,0.0,305.0,current move speed
+10,39.0,150.0,base damage
+11,9.0,20.0,damage variance
+12,36.0,150.0,attack damage
+13,250.0,250.0,attack range buffer
+14,1.210000038147,2.0,attack speed
+15,1.0,2.0,seconds per attack
+16,0.5,0.5,attack animation point
+17,0.0,500.0,last attack time
+18,0.0,10.0,attack target
+19,20.0,100.0,strength
+20,21.0,100.0,agility
+21,19.0,100.0,intellect
+22,1.0,2000.0,gold
+23,488.0,5000.0,net worth
+24,0.0,100.0,last hits
+25,0.0,100.0,denies
+26,-8000.0,8000.0,location 1
+27,-8000.0,8000.0,location 2
+28,-200.0,800.0,facing
+29,0.0,1800.0,vision range
+30,3.0,3.0,opp team
+31,1.0,19.0,opp level
+32,0.0,2000.0,opp health
+33,600.0,2000.0,opp max health
+34,2.25,100.0,opp health regen
+35,1.0,1000.0,opp mana
+36,303.0,1000.0,opp max mana
+37,1.25,30.0,opp mana regen
+38,305.0,305.0,opp base move speed
+39,0.0,305.0,opp curr move speed
+40,39.0,150.0,opp base damage
+41,9.0,20.0,opp damage variance
+42,36.0,150.0,opp attack damage
+43,250.0,250.0,opp attack range buffer
+44,1.210000038147,2.0,opp attack speed
+45,1.0,2.0,opp seconds per attack
+46,0.5,0.5,opp attack animation point
+47,0.0,500.0,opp last attack time
+48,0.0,10.0,opp attack target
+49,20.0,100.0,opp strength
+50,21.0,100.0,opp agility
+51,19.0,100.0,opp intellect
+52,-8000.0,8000.0,opp location 1
+53,-8000.0,8000.0,opp location 2
+54,-200.0,800.0,opp facing
+55,0.0,1800.0,opp vision range
+56,0.0,500.0,dota time
+57,2.0,2.0,good tower team
+58,0.0,1800.0,good tower health
+59,1800.0,1800.0,good tower max health
+60,100.0,150.0,good tower attack damage
+61,250.0,250.0,good tower attack range buffer
+62,1.0,1.0,good tower attack speed
+63,3.0,3.0,bad tower team
+64,0.0,1800.0,bad tower health
+65,1800.0,1800.0,bad tower max health
+66,100.0,150.0,bad tower attack damage
+67,250.0,250.0,bad tower attack range buffer
+68,1.0,1.0,bad tower attack speed
+69,-69.0,-69.0,bounty 1 location 1
+70,-70.0,-70.0,bounty 1 location 2
+71,-71.0,-71.0,bounty 2 location 1
+72,-72.0,-72.0,bounty 2 location 2
+73,-73.0,-73.0,bounty 3 location 1
+74,-74.0,-74.0,bounty 3 location 2
+75,-75.0,-75.0,bounty 4 location 1
+76,-76.0,-76.0,bounty 4 location 2
+77,-77.0,-77.0,power 1 location 1
+78,-78.0,-78.0,power 1 location 2
+79,-79.0,-79.0,power 2 location 1
+80,-80.0,-80.0,power 2 location 2
+81,-81.0,-1.0,power 1 type
+82,-1.0,1.0,power 1 status
+83,-83.0,-1.0,power 2 type
+84,-1.0,1.0,power 2 status
+85,-1.0,2.0,good creep 1 team
+86,-1.0,800.0,good creep 1 health
+87,-1.0,800.0,good creep 1 max health
+88,-1.0,2.0,good creep 1 health regen
+89,-1.0,325.0,good creep 1 base move speed
+90,-1.0,0.0,good creep 1 current move speed
+91,-1.0,23.5,good creep 1 base damage
+92,-1.0,6.25,good creep 1 damage variance
+93,-1.0,26.0,good creep 1 attack damage
+94,-1.0,250.0,good creep 1 attack range buffer
+95,-1.0,1.0,good creep 1 attack speed
+96,-1.0,1.0,good creep 1 seconds per attack
+97,-8000.0,8000.0,good creep 1 location 1
+98,-8000.0,8000.0,good creep 1 location 2
+99,-1.0,2.0,good creep 2 team
+100,-1.0,800.0,good creep 2 health
+101,-1.0,800.0,good creep 2 max health
+102,-1.0,2.0,good creep 2 health regen
+103,-1.0,325.0,good creep 2 base move speed
+104,-1.0,0.0,good creep 2 current move speed
+105,-1.0,23.5,good creep 2 base damage
+106,-1.0,6.25,good creep 2 damage variance
+107,-1.0,26.0,good creep 2 attack damage
+108,-1.0,250.0,good creep 2 attack range buffer
+109,-1.0,1.0,good creep 2 attack speed
+110,-1.0,1.0,good creep 2 seconds per attack
+111,-8000.0,8000.0,good creep 2 location 1
+112,-8000.0,8000.0,good creep 2 location 2
+113,-1.0,2.0,good creep 3 team
+114,-1.0,800.0,good creep 3 health
+115,-1.0,800.0,good creep 3 max health
+116,-1.0,2.0,good creep 3 health regen
+117,-1.0,325.0,good creep 3 base move speed
+118,-1.0,0.0,good creep 3 current move speed
+119,-1.0,23.5,good creep 3 base damage
+120,-1.0,6.25,good creep 3 damage variance
+121,-1.0,26.0,good creep 3 attack damage
+122,-1.0,250.0,good creep 3 attack range buffer
+123,-1.0,1.0,good creep 3 attack speed
+124,-1.0,1.0,good creep 3 seconds per attack
+125,-8000.0,8000.0,good creep 3 location 1
+126,-8000.0,8000.0,good creep 3 location 2
+127,-1.0,2.0,good creep 4 team
+128,-1.0,800.0,good creep 4 health
+129,-1.0,800.0,good creep 4 max health
+130,-1.0,2.0,good creep 4 health regen
+131,-1.0,325.0,good creep 4 base move speed
+132,-1.0,0.0,good creep 4 current move speed
+133,-1.0,25.5,good creep 4 base damage
+134,-1.0,6.25,good creep 4 damage variance
+135,-1.0,28.0,good creep 4 attack damage
+136,-1.0,250.0,good creep 4 attack range buffer
+137,-1.0,1.0,good creep 4 attack speed
+138,-1.0,1.0,good creep 4 seconds per attack
+139,-8000.0,8000.0,good creep 4 location 1
+140,-8000.0,8000.0,good creep 4 location 2
+141,-1.0,2.0,good creep 5 team
+142,-1.0,800.0,good creep 5 health
+143,-1.0,800.0,good creep 5 max health
+144,-1.0,2.0,good creep 5 health regen
+145,-1.0,325.0,good creep 5 base move speed
+146,-1.0,0.0,good creep 5 current move speed
+147,-1.0,23.5,good creep 5 base damage
+148,-1.0,6.25,good creep 5 damage variance
+149,-1.0,26.0,good creep 5 attack damage
+150,-1.0,250.0,good creep 5 attack range buffer
+151,-1.0,1.0,good creep 5 attack speed
+152,-1.0,1.0,good creep 5 seconds per attack
+153,-8000.0,8000.0,good creep 5 location 1
+154,-8000.0,8000.0,good creep 5 location 2
+155,-1.0,3.0,bad creep 1 team
+156,-1.0,800.0,bad creep 1 health
+157,-1.0,800.0,bad creep 1 max health
+158,-1.0,2.0,bad creep 1 health regen
+159,-1.0,325.0,bad creep 1 base move speed
+160,-1.0,0.0,bad creep 1 current move speed
+161,-1.0,23.5,bad creep 1 base damage
+162,-1.0,6.25,bad creep 1 damage variance
+163,-1.0,26.0,bad creep 1 attack damage
+164,-1.0,250.0,bad creep 1 attack range buffer
+165,-1.0,1.0,bad creep 1 attack speed
+166,-1.0,1.0,bad creep 1 seconds per attack
+167,-8000.0,8000.0,bad creep 1 location 1
+168,-8000.0,8000.0,bad creep 1 location 2
+169,-1.0,3.0,bad creep 2 team
+170,-1.0,800.0,bad creep 2 health
+171,-1.0,800.0,bad creep 2 max health
+172,-1.0,2.0,bad creep 2 health regen
+173,-1.0,325.0,bad creep 2 base move speed
+174,-1.0,0.0,bad creep 2 current move speed
+175,-1.0,23.5,bad creep 2 base damage
+176,-1.0,6.25,bad creep 2 damage variance
+177,-1.0,26.0,bad creep 2 attack damage
+178,-1.0,250.0,bad creep 2 attack range buffer
+179,-1.0,1.0,bad creep 2 attack speed
+180,-1.0,1.0,bad creep 2 seconds per attack
+181,-8000.0,8000.0,bad creep 2 location 1
+182,-8000.0,8000.0,bad creep 2 location 2
+183,-1.0,3.0,bad creep 3 team
+184,-1.0,800.0,bad creep 3 health
+185,-1.0,800.0,bad creep 3 max health
+186,-1.0,2.0,bad creep 3 health regen
+187,-1.0,325.0,bad creep 3 base move speed
+188,-1.0,0.0,bad creep 3 current move speed
+189,-1.0,23.5,bad creep 3 base damage
+190,-1.0,6.25,bad creep 3 damage variance
+191,-1.0,26.0,bad creep 3 attack damage
+192,-1.0,250.0,bad creep 3 attack range buffer
+193,-1.0,1.0,bad creep 3 attack speed
+194,-1.0,1.0,bad creep 3 seconds per attack
+195,-8000.0,8000.0,bad creep 3 location 1
+196,-8000.0,8000.0,bad creep 3 location 2
+197,-1.0,3.0,bad creep 4 team
+198,-1.0,800.0,bad creep 4 health
+199,-1.0,800.0,bad creep 4 max health
+200,-1.0,2.0,bad creep 4 health regen
+201,-1.0,325.0,bad creep 4 base move speed
+202,-1.0,0.0,bad creep 4 current move speed
+203,-1.0,25.5,bad creep 4 base damage
+204,-1.0,6.25,bad creep 4 damage variance
+205,-1.0,28.0,bad creep 4 attack damage
+206,-1.0,250.0,bad creep 4 attack range buffer
+207,-1.0,1.0,bad creep 4 attack speed
+208,-1.0,1.0,bad creep 4 seconds per attack
+209,-8000.0,8000.0,bad creep 4 location 1
+210,-8000.0,8000.0,bad creep 4 location 2
+211,-1.0,3.0,bad creep 5 team
+212,-1.0,800.0,bad creep 5 health
+213,-1.0,800.0,bad creep 5 max health
+214,-1.0,2.0,bad creep 5 health regen
+215,-1.0,325.0,bad creep 5 base move speed
+216,-1.0,0.0,bad creep 5 current move speed
+217,-1.0,23.5,bad creep 5 base damage
+218,-1.0,6.25,bad creep 5 damage variance
+219,-1.0,26.0,bad creep 5 attack damage
+220,-1.0,250.0,bad creep 5 attack range buffer
+221,-1.0,1.0,bad creep 5 attack speed
+222,-1.0,1.0,bad creep 5 seconds per attack
+223,-8000.0,8000.0,bad creep 5 location 1
+224,-8000.0,8000.0,bad creep 5 location 2
+225,1.0,4.0,ability 1 level
+226,90.0,90.0,ability 1 mana cost
+227,0.0,0.0,ability 1 ability damage
+228,200.0,200.0,ability 1 cast range
+229,0.0,10.0,ability 1 cooldown time remaining
+230,0.0,0.0,ability 1 target type
+231,0.0,0.0,ability 1 behavior
+232,1.0,4.0,ability 2 level
+233,90.0,90.0,ability 2 mana cost
+234,0.0,0.0,ability 2 ability damage
+235,450.0,450.0,ability 2 cast range
+236,0.0,10.0,ability 2 cooldown time remaining
+237,0.0,0.0,ability 2 target type
+238,0.0,0.0,ability 2 behavior
+239,1.0,4.0,ability 3 level
+240,90.0,90.0,ability 3 mana cost
+241,0.0,0.0,ability 3 ability damage
+242,700.0,700.0,ability 3 cast range
+243,0.0,10.0,ability 3 cooldown time remaining
+244,0.0,0.0,ability 3 target type
+245,0.0,0.0,ability 3 behavior
+246,0.0,4.0,ability 4 level
+247,0.0,0.0,ability 4 mana cost
+248,0.0,0.0,ability 4 ability damage
+249,0.0,0.0,ability 4 cast range
+250,0.0,0.0,ability 4 cooldown time remaining
+251,0.0,0.0,ability 4 target type
+252,0.0,0.0,ability 4 behavior
+253,0.0,4.0,ability 5 level
+254,0.0,0.0,ability 5 mana cost
+255,0.0,0.0,ability 5 ability damage
+256,0.0,0.0,ability 5 cast range
+257,0.0,0.0,ability 5 cooldown time remaining
+258,0.0,0.0,ability 5 target type
+259,0.0,0.0,ability 5 behavior
+260,0.0,0.0,ability 6 level
+261,150.0,150.0,ability 6 mana cost
+262,0.0,0.0,ability 6 ability damage
+263,0.0,0.0,ability 6 cast range
+264,0.0,0.0,ability 6 cooldown time remaining
+265,0.0,0.0,ability 6 target type
+266,0.0,0.0,ability 6 behavior
+267,0.0,3.0,opp ability 1 level
+268,90.0,90.0,opp ability 1 mana cost
+269,0.0,0.0,opp ability 1 ability damage
+270,0.0,200.0,opp ability 1 cast range
+271,0.0,10.0,opp ability 1 cooldown time remaining
+272,0.0,0.0,opp ability 1 target type
+273,0.0,0.0,opp ability 1 behavior
+274,0.0,3.0,opp ability 2 level
+275,90.0,90.0,opp ability 2 mana cost
+276,0.0,0.0,opp ability 2 ability damage
+277,0.0,450.0,opp ability 2 cast range
+278,0.0,10.0,opp ability 2 cooldown time remaining
+279,0.0,0.0,opp ability 2 target type
+280,0.0,0.0,opp ability 2 behavior
+281,0.0,3.0,opp ability 3 level
+282,90.0,90.0,opp ability 3 mana cost
+283,0.0,0.0,opp ability 3 ability damage
+284,0.0,700.0,opp ability 3 cast range
+285,0.0,10.0,opp ability 3 cooldown time remaining
+286,0.0,0.0,opp ability 3 target type
+287,0.0,0.0,opp ability 3 behavior
+288,0.0,3.0,opp ability 4 level
+289,0.0,0.0,opp ability 4 mana cost
+290,0.0,0.0,opp ability 4 ability damage
+291,0.0,0.0,opp ability 4 cast range
+292,0.0,0.0,opp ability 4 cooldown time remaining
+293,0.0,0.0,opp ability 4 target type
+294,0.0,0.0,opp ability 4 behavior
+295,0.0,0.0,opp ability 5 level
+296,0.0,0.0,opp ability 5 mana cost
+297,0.0,0.0,opp ability 5 ability damage
+298,0.0,0.0,opp ability 5 cast range
+299,0.0,0.0,opp ability 5 cooldown time remaining
+300,0.0,0.0,opp ability 5 target type
+301,0.0,0.0,opp ability 5 behavior
+302,0.0,0.0,opp ability 6 level
+303,150.0,150.0,opp ability 6 mana cost
+304,0.0,0.0,opp ability 6 ability damage
+305,0.0,0.0,opp ability 6 cast range
+306,0.0,0.0,opp ability 6 cooldown time remaining
+307,0.0,0.0,opp ability 6 target type
+308,0.0,0.0,opp ability 6 behavior
+309,-1.0,1.0,item flask
